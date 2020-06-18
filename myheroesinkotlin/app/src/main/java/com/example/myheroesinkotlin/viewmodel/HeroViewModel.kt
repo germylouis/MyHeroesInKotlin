@@ -10,12 +10,12 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class HeroViewModel (application: Application) : AndroidViewModel(application){
+class HeroViewModel(application: Application) : AndroidViewModel(application) {
     private var retrofitInstance = RetrofitInstance()
     private var resultLiveData = MutableLiveData<HeroResults>()
 
 
-    fun getHeroRepo(){
+    fun getHeroRepo() {
         retrofitInstance.getRepositories()?.enqueue(object : Callback<HeroResults?> {
             override fun onResponse(
                 call: Call<HeroResults?>,
@@ -52,7 +52,7 @@ class HeroViewModel (application: Application) : AndroidViewModel(application){
         })
     }
 
-    fun getResultLiveData () : MutableLiveData<HeroResults>{
+    fun getResultLiveData(): MutableLiveData<HeroResults> {
         return resultLiveData
     }
 

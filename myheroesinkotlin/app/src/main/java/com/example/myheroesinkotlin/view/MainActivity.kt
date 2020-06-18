@@ -8,14 +8,13 @@ import android.widget.Button
 import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myheroesinkotlin.R
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var button : Button
-    lateinit var videoView : VideoView
+    lateinit var button: Button
+    lateinit var videoView: VideoView
     lateinit var mediaPlayer: MediaPlayer
-     var currentVidPos : Int = 0
+    var currentVidPos: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +38,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        var mIntent = Intent(this, SecondActivity::class.java)
+        val mIntent = Intent(this, SecondActivity::class.java)
         button.setOnClickListener { startActivity(mIntent) }
 
 
@@ -60,6 +59,6 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         mediaPlayer.release()
-        mediaPlayer ?: null
+
     }
 }

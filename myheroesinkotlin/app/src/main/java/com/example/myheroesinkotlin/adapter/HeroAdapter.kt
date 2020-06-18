@@ -2,6 +2,8 @@ package com.example.myheroesinkotlin.adapter
 
 import android.content.Context
 import android.os.Build
+import android.os.Parcel
+import android.os.Parcelable
 import android.text.Html
 import android.util.Log
 import android.view.LayoutInflater
@@ -17,9 +19,9 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.myheroesinkotlin.R
 import com.example.myheroesinkotlin.model.HeroResults
 
-class HeroAdapter(results: HeroResults) : RecyclerView.Adapter<HeroAdapter.MyViewHolder>() {
+class HeroAdapter(var heroResultList: HeroResults) : RecyclerView.Adapter<HeroAdapter.MyViewHolder>() {
 
-    lateinit var heroResultList: HeroResults
+
     lateinit var context: Context
 
     fun HeroAdapter(heroResults: HeroResults){
@@ -81,36 +83,26 @@ class HeroAdapter(results: HeroResults) : RecyclerView.Adapter<HeroAdapter.MyVie
     }
 
     override fun getItemCount(): Int {
-        return if (heroResultList != null){
-            1
-        }else{
-            0
-        }
+        return 1
     }
 
 
     class MyViewHolder(itemView: View) : ViewHolder(itemView) {
-        var heroName: TextView
-        var weight: TextView
-        var height: TextView
-        var power: TextView
-        var combat: TextView
-        var publisher: TextView
-        var firstAppear: TextView
-        var desc: TextView
-        var avatarImageView: ImageView
+        var heroName: TextView = itemView.findViewById(R.id.hero_name)
+        var weight: TextView = itemView.findViewById(R.id.weight)
+        var height: TextView = itemView.findViewById(R.id.height)
+        var power: TextView = itemView.findViewById(R.id.power)
+        var combat: TextView = itemView.findViewById(R.id.combat)
+        var publisher: TextView = itemView.findViewById(R.id.publisher)
+        var firstAppear: TextView = itemView.findViewById(R.id.appeared)
+        var desc: TextView = itemView.findViewById(R.id.heroDesc)
+        var avatarImageView: ImageView = itemView.findViewById(R.id.hero_pic)
 
-        init {
-            heroName = itemView.findViewById(R.id.hero_name)
-            weight = itemView.findViewById(R.id.weight)
-            height = itemView.findViewById(R.id.height)
-            power = itemView.findViewById(R.id.power)
-            combat = itemView.findViewById(R.id.combat)
-            publisher = itemView.findViewById(R.id.publisher)
-            firstAppear = itemView.findViewById(R.id.appeared)
-            desc = itemView.findViewById(R.id.heroDesc)
-            avatarImageView = itemView.findViewById(R.id.hero_pic)
-        }
     }
+
+
+
+
+
 
 }

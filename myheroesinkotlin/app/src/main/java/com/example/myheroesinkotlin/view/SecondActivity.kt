@@ -20,11 +20,11 @@ class SecondActivity : AppCompatActivity() {
 
     lateinit var viewModel: HeroViewModel
     var hero = "Spiderman"
-    lateinit var text : EditText
-    lateinit var button : Button
+    lateinit var text: EditText
+    lateinit var button: Button
 
-    lateinit var rView : RecyclerView
-    lateinit var myObserver : Observer<HeroResults>
+    lateinit var rView: RecyclerView
+    lateinit var myObserver: Observer<HeroResults>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +33,7 @@ class SecondActivity : AppCompatActivity() {
         rView = listof_heroes
         text = search
 
-        text.setOnEditorActionListener { v, actionId, event ->
+        text.setOnEditorActionListener { _, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH ||
                 actionId == EditorInfo.IME_ACTION_DONE ||
                 event.action == KeyEvent.ACTION_DOWN ||
@@ -48,8 +48,8 @@ class SecondActivity : AppCompatActivity() {
 
         viewModel = ViewModelProviders.of(this).get(HeroViewModel::class.java)
         myObserver =
-            Observer<HeroResults> { result ->
-                setupRV(result)
+            Observer<HeroResults> { hero ->
+                setupRV(hero)
             }
 
         viewModel.getResultLiveData().observe(this, myObserver)
@@ -58,13 +58,11 @@ class SecondActivity : AppCompatActivity() {
 
     }
 
-    private fun setupRV(results: HeroResults){
-        val adapter = HeroAdapter(results)
-        rView.setAdapter(adapter)
-        rView.setLayoutManager(LinearLayoutManager(this@SecondActivity))
+    private fun setupRV( hero: HeroResults) {
+        val adapter = HeroAdapter(hero)
+        rView.adapter = adapter
+        rView.layoutManager = LinearLayoutManager(this@SecondActivity)
     }
-
-
 
 
 }
